@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Property Table</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#94a3b8;
+      --accent:#16a34a;
+      --accent-2:#059669;
+      --white:#e6eef8;
+    }
+
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#071019);font-family:Inter, system-ui, sans-serif;color:var(--white);}
+    .container{max-width:1000px;margin:40px auto;padding:20px;background:var(--card);border-radius:10px;box-shadow:0 6px 30px rgba(0,0,0,0.3)}
+    h1{text-align:center;margin-bottom:20px;color:var(--accent)}
+
+    table{width:100%;border-collapse:collapse;overflow:hidden;border-radius:10px}
+    th,td{padding:12px 10px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.1)}
+    th{background:rgba(255,255,255,0.05);color:var(--muted);font-size:14px;text-transform:uppercase;letter-spacing:0.5px}
+    td{font-size:15px;color:var(--white)}
+    tr:hover{background:rgba(255,255,255,0.04)}
+
+    .view-link a{color:var(--accent);text-decoration:none;font-weight:600}
+    .view-link a:hover{text-decoration:underline}
+
+    .btn-container{text-align:right;margin-bottom:15px}
+    button{background:var(--accent);border:none;color:white;padding:8px 16px;border-radius:6px;font-weight:600;cursor:pointer;margin-left:10px}
+    button:hover{background:var(--accent-2)}
+
+    @media (max-width:700px){
+      table{font-size:14px}
+      th,td{padding:8px 6px}
+      .view-link a{display:inline-block;margin-top:4px}
+      .btn-container{text-align:center}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Property Listings</h1>
+    <div class="btn-container">
+      <button onclick="downloadPDF()">Download PDF</button>
+      <button onclick="downloadExcel()">Download Excel</button>
+    </div>
+
+    <table id="propertyTable">
+      <thead>
+        <tr>
+          <th>S/N</th>
+          <th>Location</th>
+          <th>Size</th>
+          <th>Title Document</th>
+          <th>Peculiar Feature</th>
+          <th>Particularly Suitable for</th>
+          <th>Price</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Coker/Aguda</td>
+          <td>1 plot</td>
+          <td>C of O</td>
+          <td>—</td>
+          <td>—</td>
+          <td>₦100M</td>
+          <td class="view-link"><a href="#">View Property</a></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Tologbo, near Imagbon. Off Lagos Badagry express way</td>
+          <td>1+ plot</td>
+          <td>Receipt, Deed, Survey</td>
+          <td>Fenced, strong existing foundation and prospect for future development.</td>
+          <td>Guest house, country home etc.</td>
+          <td>₦25M</td>
+          <td class="view-link"><a href="#">View Property</a></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Sango</td>
+          <td>1+ plot</td>
+          <td>C of O, Receipt, Survey, Building approval</td>
+          <td>8 flats/apartments, 2-storey building and BQ, fenced with gate, close to Sango Idioroko express way and in a completely built-up environment.</td>
+          <td>Professional office, hospital, hotel/guest house, shortlets, etc.</td>
+          <td>₦100M</td>
+          <td class="view-link"><a href="#">View Property</a></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Sango</td>
+          <td>3 plots</td>
+          <td>Agreement, Receipt, Building plan</td>
+          <td>6 classroom building, 3 flats, fenced etc.</td>
+          <td>—</td>
+          <td>₦300M</td>
+          <td class="view-link"><a href="#">View Property</a></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Iyana Isashi / Mebamo</td>
+          <td>3 plots</td>
+          <td>Agreement, Receipts, Survey</td>
+          <td>Fenced, gated</td>
+          <td>Schools, hotels/guest house, shortlets, apartments and suites</td>
+          <td>₦100M</td>
+          <td class="view-link"><a href="#">View Property</a></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Iyana Isashi</td>
+          <td>50 plots</td>
+          <td>Receipt, Agreement, Survey</td>
+          <td>Located on Lagos Badagry International express road, with proximity to LASU, LASUED, Post Graduate Medical College, facing express road.</td>
+          <td>Shopping mall etc.</td>
+          <td>₦1.7B</td>
+          <td class="view-link"><a href="#">View Property</a></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Iyana Isashi / Mebamo</td>
+          <td>1 plot</td>
+          <td>Receipt, Deed of Assignment, Survey, C of O</td>
+          <td>Fenced with 1-storey building convertible/demolishable, proximity to LASU, LASUED, Post Graduate Medical College, Lagos Badagry express way, on dry land</td>
+          <td>Hostel, apartments and suites, private residence</td>
+          <td>₦130M</td>
+          <td class="view-link"><a href="#">View Property</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function downloadExcel(){
+      const table = document.getElementById('propertyTable');
+      const wb = XLSX.utils.table_to_book(table, {sheet: 'Properties'});
+      XLSX.writeFile(wb, 'Property_List.xlsx');
+    }
+
+    function downloadPDF(){
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({orientation: 'landscape'});
+      const table = document.getElementById('propertyTable');
+      doc.text('Property Listings', 14, 15);
+      doc.autoTable({ html: table, startY: 20 });
+      doc.save('Property_List.pdf');
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+</body>
+</html>
